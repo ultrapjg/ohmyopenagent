@@ -1,10 +1,15 @@
 export const AGENT_NAME_MAP: Record<string, string> = {
-  // Sisyphus variants → "sisyphus"
-  omo: "sisyphus",
-  OmO: "sisyphus",
+  // Sisyphus variants → "sisyphus" (canonical key)
+  sisyphus: "sisyphus",
   Sisyphus: "sisyphus",
   "Sisyphus (Ultraworker)": "sisyphus",
-  sisyphus: "sisyphus",
+  "Sisyphus - Ultraworker": "sisyphus",
+  omo: "sisyphus",
+  OmO: "sisyphus",
+  // Ultradus aliases → "sisyphus" (display name changed, internal key unchanged)
+  ultradus: "sisyphus",
+  Ultradus: "sisyphus",
+  "Ultradus - DS Ultra Worker": "sisyphus",
 
   // Hephaestus variants → "hephaestus"
   "Hephaestus (Deep Agent)": "hephaestus",
@@ -35,9 +40,12 @@ export const AGENT_NAME_MAP: Record<string, string> = {
   "Momus (Plan Critic)": "momus",
   momus: "momus",
 
-  // Sisyphus-Junior → "sisyphus-junior"
-  "Sisyphus-Junior": "sisyphus-junior",
+  // Sisyphus-Junior variants → "sisyphus-junior"
   "sisyphus-junior": "sisyphus-junior",
+  "Sisyphus-Junior": "sisyphus-junior",
+  // Ultradus-Junior aliases → "sisyphus-junior" (display name changed, internal key unchanged)
+  "ultradus-junior": "sisyphus-junior",
+  "Ultradus-Junior": "sisyphus-junior",
 
   // Already lowercase - passthrough
   build: "build",
@@ -48,15 +56,15 @@ export const AGENT_NAME_MAP: Record<string, string> = {
 }
 
 export const BUILTIN_AGENT_NAMES = new Set([
-  "sisyphus", // was "Sisyphus"
+  "sisyphus",
   "oracle",
   "librarian",
   "explore",
   "multimodal-looker",
-  "metis", // was "Metis - Plan Consultant"
-  "momus", // was "Momus - Plan Critic"
-  "prometheus", // was "Prometheus - Plan Builder"
-  "atlas", // was "Atlas"
+  "metis",
+  "momus",
+  "prometheus",
+  "atlas",
   "build",
 ])
 

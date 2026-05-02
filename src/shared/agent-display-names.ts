@@ -10,11 +10,11 @@
  * type selector dropdown. Use ` - ` (space-dash-space) instead of `(...)`.
  */
 export const AGENT_DISPLAY_NAMES: Record<string, string> = {
-  sisyphus: "Sisyphus - Ultraworker",
+  sisyphus: "Ultradus - DS Ultra Worker",
   hephaestus: "Hephaestus - Deep Agent",
   prometheus: "Prometheus - Plan Builder",
   atlas: "Atlas - Plan Executor",
-  "sisyphus-junior": "Sisyphus-Junior",
+  "sisyphus-junior": "Ultradus-Junior",
   metis: "Metis - Plan Consultant",
   momus: "Momus - Plan Critic",
   athena: "Athena - Council",
@@ -77,6 +77,11 @@ const REVERSE_DISPLAY_NAMES: Record<string, string> = Object.fromEntries(
 // Old configs/sessions may reference these names; resolve them to config keys.
 const LEGACY_DISPLAY_NAMES: Record<string, string> = {
   "sisyphus (ultraworker)": "sisyphus",
+  "sisyphus - ultraworker": "sisyphus",
+  "ultradus - ds ultra worker": "sisyphus",
+  "ultradus (ds ultra worker)": "sisyphus",
+  ultradus: "sisyphus",
+  "ultradus-junior": "sisyphus-junior",
   "hephaestus (deep agent)": "hephaestus",
   "prometheus (plan builder)": "prometheus",
   "atlas (plan executor)": "atlas",
