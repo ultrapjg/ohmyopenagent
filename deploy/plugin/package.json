@@ -1,0 +1,11 @@
+{
+  "name": "oh-my-openagent",
+  "version": "3.17.11",
+  "main": "./dist/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  }
+}
