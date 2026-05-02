@@ -1,0 +1,127 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/dev/assets/oh-my-opencode.schema.json",
+
+  // Closed-network (폐쇄망) configuration for internal LLM deployments.
+  // Designed for environments where:
+  //   - All LLM requests go to an internal server with limited capacity
+  //   - No internet access; no external API fallbacks available
+  //   - Rate limiting and connection limits are strict
+  //
+  // Key differences from default.jsonc:
+  //   - All concurrency reduced to 1 (sequential execution)
+  //   - maxToolCalls capped at 300 (prevents runaway LLM chains)
+  //   - Circuit breaker threshold lowered (fail fast on errors)
+  //   - runtime_fallback disabled (no alternative endpoints)
+  //   - Timeouts tightened to detect stalls quickly
+
+  "agents": {
+    // Main orchestrator: point all agents at your internal endpoint
+    // Replace "your-provider/your-model" with your actual internal model name
+    "sisyphus": {
+      "model": "your-provider/your-model",
+    },
+
+    "hephaestus": {
+      "model": "your-provider/your-model",
+    },
+
+    "prometheus": {
+      "model": "your-provider/your-model",
+    },
+
+    "oracle": {
+      "model": "your-provider/your-model",
+    },
+
+    "librarian": {
+      "model": "your-provider/your-model",
+    },
+
+    "explore": {
+      "model": "your-provider/your-model",
+    },
+
+    "atlas": {
+      "model": "your-provider/your-model",
+    },
+
+    "metis": {
+      "model": "your-provider/your-model",
+    },
+
+    "momus": {
+      "model": "your-provider/your-model",
+    },
+
+    "multimodal-looker": {
+      "model": "your-provider/your-model",
+    },
+
+    "sisyphus-junior": {
+      "model": "your-provider/your-model",
+    },
+  },
+
+  "categories": {
+    "quick":             { "model": "your-provider/your-model" },
+    "unspecified-low":   { "model": "your-provider/your-model" },
+    "unspecified-high":  { "model": "your-provider/your-model" },
+    "writing":           { "model": "your-provider/your-model" },
+    "visual-engineering":{ "model": "your-provider/your-model" },
+    "deep":              { "model": "your-provider/your-model" },
+    "ultrabrain":        { "model": "your-provider/your-model" },
+  },
+
+  "background_task": {
+    // Sequential execution - prevents overloading internal LLM server
+    "defaultConcurrency": 1,
+
+    // Limit each provider to 1 simultaneous call
+    "providerConcurrency": {
+      "anthropic": 1,
+      "openai": 1,
+      "google": 1,
+      "opencode": 1,
+    },
+
+    // Hard cap on total tool/LLM calls per session (default: 4000)
+    // Prevents runaway agent chains that hammer a limited internal server
+    "maxToolCalls": 300,
+
+    // Fail fast: declare stale after 10 min of no progress (default: 45 min)
+    "staleTimeoutMs": 600000,
+
+    // Message response timeout: 20 min (default: 60 min)
+    "messageStalenessTimeoutMs": 1200000,
+
+    // Task lifetime cap: 15 min (default: 30 min)
+    "taskTtlMs": 900000,
+
+    // Give extra time to detect a gone session on slow networks (default: 1 min)
+    "sessionGoneTimeoutMs": 120000,
+
+    "circuitBreaker": {
+      "enabled": true,
+      // Trip circuit breaker after only 5 consecutive failures (default: 20)
+      // Stops hammering a struggling internal LLM server quickly
+      "consecutiveThreshold": 5,
+    },
+  },
+
+  "runtime_fallback": {
+    // Disable fallback: no alternative endpoints in closed network
+    "enabled": false,
+
+    // If you do enable fallback, limit retries and wait longer between them
+    "max_fallback_attempts": 1,
+    "cooldown_seconds": 300,
+
+    // Generous timeout for slow internal networks (0 = disabled)
+    "timeout_seconds": 60,
+  },
+
+  "experimental": {
+    // Aggressive truncation keeps context windows smaller → fewer tokens per call
+    "aggressive_truncation": true,
+  },
+}
