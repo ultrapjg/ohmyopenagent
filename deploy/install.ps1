@@ -99,13 +99,10 @@ New-Item -ItemType Directory -Path "$PLUGIN_CACHE\dist" -Force | Out-Null
 Copy-Item $pluginDist -Destination "$PLUGIN_CACHE\dist\index.js" -Force
 Write-OK "dist/index.js deployed"
 
-# Copy package.json - MUST be UTF-8 without BOM
-# OpenCode's JSON parser rejects BOM and fails to load the plugin
-$raw = [System.IO.File]::ReadAllText($pluginPkg, [System.Text.Encoding]::UTF8)
-if ($raw.StartsWith([char]0xFEFF)) { $raw = $raw.Substring(1) }
-$utf8NoBom = New-Object System.Text.UTF8Encoding $false
-[System.IO.File]::WriteAllText("$PLUGIN_CACHE\package.json", $raw, $utf8NoBom)
-Write-OK "package.json deployed (no BOM)"
+# Copy package.json directly - source file is already UTF-8 without BOM
+# Avoid ReadAllText→WriteAllText as PS5 string round-trip can corrupt leading bytes
+Copy-Item $pluginPkg -Destination "$PLUGIN_CACHE\package.json" -Force
+Write-OK "package.json deployed"
 
 # ── [5/5] Register plugin in opencode.json ───────────────────
 Write-Host "[5/5] Registering plugin..." -ForegroundColor White
@@ -124,25 +121,27 @@ if (Test-Path $OPENCODE_CFG) {
 }
 
 # Check if already registered (match both "oh-my-openagent" and "oh-my-openagent@latest")
-if ($rawCfg -match ('"' + [regex]::Escape($PLUGIN_NAME) + '(@[^"]*)?"')) {
+$alreadyRegistered = $rawCfg -match ('"' + [regex]::Escape($PLUGIN_NAME) + '(@[^"]*)?"')
+
+if ($alreadyRegistered) {
     Write-OK "$PLUGIN_NAME already registered"
+    # File is untouched - no write needed
 } else {
-    # Inject into plugin array - handles both empty [] and existing entries
+    # Inject plugin name into the array, then write the file
     if ($rawCfg -match '"plugin"\s*:\s*\[\s*\]') {
         # Empty array
         $rawCfg = $rawCfg -replace '"plugin"\s*:\s*\[\s*\]', ('"plugin": [ "' + $PLUGIN_NAME + '" ]')
     } elseif ($rawCfg -match '"plugin"\s*:\s*\[') {
-        # Non-empty array - prepend
+        # Non-empty array - prepend before first entry
         $rawCfg = $rawCfg -replace '("plugin"\s*:\s*\[)', ('$1' + "`n    `"$PLUGIN_NAME`",")
     } else {
-        # No plugin key at all - add before closing brace
-        $rawCfg = $rawCfg -replace '\}\s*$', (",`n  `"plugin`": [ `"$PLUGIN_NAME`" ]`n}")
+        # No plugin key at all - write fresh config
+        $rawCfg = '{' + "`n  `"`$schema`": `"https://opencode.ai/config.json`",`n  `"plugin`": [ `"$PLUGIN_NAME`" ]`n}"
     }
+    $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllText($OPENCODE_CFG, $rawCfg, $utf8NoBom)
     Write-OK "Registered: $PLUGIN_NAME"
 }
-
-$utf8NoBom = New-Object System.Text.UTF8Encoding $false
-[System.IO.File]::WriteAllText($OPENCODE_CFG, $rawCfg, $utf8NoBom)
 
 # ── Done ─────────────────────────────────────────────────────
 Write-Host ""
