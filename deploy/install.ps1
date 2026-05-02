@@ -20,9 +20,13 @@ $ErrorActionPreference = "Stop"
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 $PLUGIN_NAME   = "oh-my-openagent"
+$PLUGIN_TAG    = "3.17.11-ds"           # Custom tag - does NOT exist on npm.
+                                         # Prevents OpenCode/Bun from auto-updating
+                                         # to upstream oh-my-opencode package.
+$PLUGIN_ID     = "$PLUGIN_NAME@$PLUGIN_TAG"
 $BIN_DIR       = "$env:USERPROFILE\.local\bin"
 $OPENCODE_CFG  = "$env:USERPROFILE\.config\opencode\opencode.json"
-$PLUGIN_CACHE  = "$env:USERPROFILE\.cache\opencode\packages\$PLUGIN_NAME@latest\node_modules\$PLUGIN_NAME"
+$PLUGIN_CACHE  = "$env:USERPROFILE\.cache\opencode\packages\$PLUGIN_ID\node_modules\$PLUGIN_NAME"
 
 function Write-Step ($msg) { Write-Host "  -> $msg" -ForegroundColor Cyan }
 function Write-OK   ($msg) { Write-Host "  OK $msg" -ForegroundColor Green }
@@ -76,16 +80,24 @@ Write-Host "[3/5] Installing binaries..." -ForegroundColor White
 
 if (-not $SkipOpenCode) {
     Write-Step "Copying opencode.exe -> $BIN_DIR\opencode.exe"
-    Copy-Item $ocExe -Destination "$BIN_DIR\opencode.exe" -Force
-    Write-OK "opencode.exe installed"
+    try {
+        Copy-Item $ocExe -Destination "$BIN_DIR\opencode.exe" -Force
+        Write-OK "opencode.exe installed"
+    } catch {
+        Write-Warn "opencode.exe is in use (already running) -- skipped. Restart opencode after installation."
+    }
 } else {
     Write-Warn "Skipping opencode.exe (-SkipOpenCode)"
 }
 
 if (-not $SkipOmoCli) {
     Write-Step "Copying oh-my-opencode.exe -> $BIN_DIR\oh-my-opencode.exe"
-    Copy-Item $omoExe -Destination "$BIN_DIR\oh-my-opencode.exe" -Force
-    Write-OK "oh-my-opencode.exe installed"
+    try {
+        Copy-Item $omoExe -Destination "$BIN_DIR\oh-my-opencode.exe" -Force
+        Write-OK "oh-my-opencode.exe installed"
+    } catch {
+        Write-Warn "oh-my-opencode.exe is in use -- skipped."
+    }
 } else {
     Write-Warn "Skipping oh-my-opencode.exe (-SkipOmoCli)"
 }
@@ -120,27 +132,26 @@ if (Test-Path $OPENCODE_CFG) {
     $rawCfg = "{`n  `"`$schema`": `"https://opencode.ai/config.json`",`n  `"plugin`": []`n}`n"
 }
 
-# Check if already registered (match both "oh-my-openagent" and "oh-my-openagent@latest")
-$alreadyRegistered = $rawCfg -match ('"' + [regex]::Escape($PLUGIN_NAME) + '(@[^"]*)?"')
+# Check if already registered with the exact pinned ID (e.g. oh-my-openagent@3.17.11-ds)
+# Using a non-existent npm version tag prevents OpenCode/Bun from auto-updating to upstream.
+$alreadyRegistered = $rawCfg -match ('"' + [regex]::Escape($PLUGIN_ID) + '"')
 
 if ($alreadyRegistered) {
-    Write-OK "$PLUGIN_NAME already registered"
+    Write-OK "$PLUGIN_ID already registered"
     # File is untouched - no write needed
 } else {
-    # Inject plugin name into the array, then write the file
+    # Remove any old oh-my-openagent entry (with or without tag), then add pinned ID
+    $rawCfg = $rawCfg -replace '"oh-my-openagent(@[^"]*)?",?\s*', ''
     if ($rawCfg -match '"plugin"\s*:\s*\[\s*\]') {
-        # Empty array
-        $rawCfg = $rawCfg -replace '"plugin"\s*:\s*\[\s*\]', ('"plugin": [ "' + $PLUGIN_NAME + '" ]')
+        $rawCfg = $rawCfg -replace '"plugin"\s*:\s*\[\s*\]', ('"plugin": [ "' + $PLUGIN_ID + '" ]')
     } elseif ($rawCfg -match '"plugin"\s*:\s*\[') {
-        # Non-empty array - prepend before first entry
-        $rawCfg = $rawCfg -replace '("plugin"\s*:\s*\[)', ('$1' + "`n    `"$PLUGIN_NAME`",")
+        $rawCfg = $rawCfg -replace '("plugin"\s*:\s*\[)', ('$1' + "`n    `"$PLUGIN_ID`",")
     } else {
-        # No plugin key at all - write fresh config
-        $rawCfg = '{' + "`n  `"`$schema`": `"https://opencode.ai/config.json`",`n  `"plugin`": [ `"$PLUGIN_NAME`" ]`n}"
+        $rawCfg = '{' + "`n  `"`$schema`": `"https://opencode.ai/config.json`",`n  `"plugin`": [ `"$PLUGIN_ID`" ]`n}"
     }
     $utf8NoBom = New-Object System.Text.UTF8Encoding $false
     [System.IO.File]::WriteAllText($OPENCODE_CFG, $rawCfg, $utf8NoBom)
-    Write-OK "Registered: $PLUGIN_NAME"
+    Write-OK "Registered: $PLUGIN_ID (pinned, auto-update blocked)"
 }
 
 # ── Done ─────────────────────────────────────────────────────
