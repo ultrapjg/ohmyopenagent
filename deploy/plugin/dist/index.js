@@ -100456,7 +100456,7 @@ async function resolveSubagentExecution(args, executorCtx, parentAgent, category
       categoryModel: undefined,
       error: `Cannot use subagent_type="${SISYPHUS_JUNIOR_AGENT2}" directly. Use category parameter instead (e.g., ${categoryExamples}).
 
-Sisyphus-Junior is spawned automatically when you specify a category. Pick the appropriate category for your task domain.`
+Ultradus-Junior is spawned automatically when you specify a category. Pick the appropriate category for your task domain.`
     };
   }
   if (isPlanFamily(agentName) && isPlanFamily(parentAgent)) {
@@ -115503,10 +115503,10 @@ function buildClaudeOpus47SisyphusPrompt(model, availableAgents, availableTools 
   const taskManagementSection = buildTaskManagementSection(useTaskSystem);
   const todoHookNote = useTaskSystem ? "YOUR TASK CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TASK CONTINUATION])" : "YOUR TODO CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TODO CONTINUATION])";
   const browserQaInstruction = availableSkills.some((skill2) => skill2.name === "playwright") ? "**Web / browser / UI work** \u2192 load the `playwright` skill and DRIVE A REAL BROWSER. Open the page. Click the elements. Fill the forms. WATCH THE CONSOLE. Screenshot if helpful. Visual changes NOT RENDERED in a browser are NOT VALIDATED." : "**Web / browser / UI work** \u2192 use the available browser automation surface and DRIVE A REAL BROWSER. Open the page. Click the elements. Fill the forms. WATCH THE CONSOLE. Screenshot if helpful. Visual changes NOT RENDERED in a browser are NOT VALIDATED.";
-  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from OhMyOpenCode");
+  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent");
   return `${agentIdentity}
 <Role>
-You are **Ultradus** - Powerful AI Agent with orchestration capabilities from OhMyOpenCode.
+You are **Ultradus** - Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent.
 
 **Identity**: SF Bay Area senior engineer. Work, delegate, verify, ship. **NO AI SLOP.**
 
@@ -115917,9 +115917,9 @@ function buildGpt54SisyphusPrompt(model, availableAgents, availableTools = [], a
   const nonClaudePlannerSection = buildNonClaudePlannerSection(model);
   const tasksSection = buildGpt54TasksSection(useTaskSystem);
   const todoHookNote = useTaskSystem ? "YOUR TASK CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TASK CONTINUATION])" : "YOUR TODO CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TODO CONTINUATION])";
-  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from OhMyOpenCode");
+  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent");
   const identityBlock = `<identity>
-You are Ultradus - an AI orchestrator from OhMyOpenCode.
+You are Ultradus - an AI orchestrator from DS-OhMyCloseAgent.
 
 You are a senior SF Bay Area engineer. You delegate, verify, and ship. Your code is indistinguishable from a senior engineer's work.
 
@@ -116643,7 +116643,7 @@ ${GPT_APPLY_PATCH_GUIDANCE}
 Use \`rg\` directly for text and file search. One tool call, one clear thing. Never chain unrelated commands with \`;\` or \`&&\` in one call - they render poorly. Do not use Python to read or write files when a shell command or the file-edit tools would suffice.
 `;
 function buildGpt55SisyphusPrompt(model, availableAgents, _availableTools = [], availableSkills = [], availableCategories = [], useTaskSystem = false) {
-  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from OhMyOpenCode");
+  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent");
   const personality = "";
   const taskSystemGuide = buildTaskSystemGuide(useTaskSystem);
   const categorySkillsGuide = buildCategorySkillsDelegationGuide(availableCategories, availableSkills);
@@ -116699,9 +116699,9 @@ function buildKimiK26SisyphusPrompt(model, availableAgents, availableTools = [],
   const nonClaudePlannerSection = buildNonClaudePlannerSection(model);
   const tasksSection = buildKimiK26TasksSection(useTaskSystem);
   const todoHookNote = useTaskSystem ? "YOUR TASK CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TASK CONTINUATION])" : "YOUR TODO CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TODO CONTINUATION])";
-  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from OhMyOpenCode");
+  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent");
   const identityBlock = `<identity>
-You are Ultradus - an AI orchestrator from OhMyOpenCode.
+You are Ultradus - an AI orchestrator from DS-OhMyCloseAgent.
 
 You are a senior SF Bay Area engineer. You delegate, verify, and ship. Your code is indistinguishable from a senior engineer's work.
 
@@ -117158,10 +117158,10 @@ function buildDynamicSisyphusPrompt(model, availableAgents, availableTools = [],
   const nonClaudePlannerSection = buildNonClaudePlannerSection(model);
   const taskManagementSection = buildTaskManagementSection(useTaskSystem);
   const todoHookNote = useTaskSystem ? "YOUR TASK CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TASK CONTINUATION])" : "YOUR TODO CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TODO CONTINUATION])";
-  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from OhMyOpenCode");
+  const agentIdentity = buildAgentIdentitySection("Ultradus", "Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent");
   return `${agentIdentity}
 <Role>
-You are "Ultradus" - Powerful AI Agent with orchestration capabilities from OhMyOpenCode.
+You are "Ultradus" - Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent.
 
 **Why Ultradus?**: DS engineers push beyond limits every day. So do you. Ultra performance, DS precision-your code should be indistinguishable from a senior engineer's.
 
@@ -117554,7 +117554,7 @@ function createSisyphusAgent(model, availableAgents, availableToolNames, availab
   if (isKimiK2Model(model)) {
     const prompt2 = buildKimiK26SisyphusPrompt(model, agents, tools, skills2, categories2, useTaskSystem);
     return {
-      description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+      description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
       mode: MODE,
       model,
       maxTokens: 64000,
@@ -117572,7 +117572,7 @@ function createSisyphusAgent(model, availableAgents, availableToolNames, availab
   if (isGpt5_5Model(model)) {
     const prompt2 = buildGpt55SisyphusPrompt(model, agents, tools, skills2, categories2, useTaskSystem);
     return {
-      description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+      description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
       mode: MODE,
       model,
       maxTokens: 64000,
@@ -117590,7 +117590,7 @@ function createSisyphusAgent(model, availableAgents, availableToolNames, availab
   if (isGptNativeSisyphusModel(model)) {
     const prompt2 = buildGpt54SisyphusPrompt(model, agents, tools, skills2, categories2, useTaskSystem);
     return {
-      description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+      description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
       mode: MODE,
       model,
       maxTokens: 64000,
@@ -117608,7 +117608,7 @@ function createSisyphusAgent(model, availableAgents, availableToolNames, availab
   if (isClaudeOpus47Model(model)) {
     const prompt2 = buildClaudeOpus47SisyphusPrompt(model, agents, tools, skills2, categories2, useTaskSystem);
     return {
-      description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+      description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
       mode: MODE,
       model,
       maxTokens: 64000,
@@ -117648,7 +117648,7 @@ ${buildGeminiVerificationOverride()}
     ...getGptApplyPatchPermission(model)
   };
   const base = {
-    description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+    description: "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
     mode: MODE,
     model,
     maxTokens: 64000,
@@ -117886,7 +117886,7 @@ Before finalizing answers on architecture, security, or performance: re-scan for
 <delivery>
 Your response goes directly to the user with no intermediate processing. Make your final message self-contained: a clear recommendation they can act on immediately, covering both what to do and why. Dense and useful beats long and thorough. Deliver actionable insight, not exhaustive analysis.
 </delivery>`;
-var ORACLE_GPT_5_5_PROMPT = `You are Oracle, a strategic technical advisor based on GPT-5.5. You are invoked by a primary coding agent when complex analysis or architectural decisions require elevated reasoning, and you respond with a single, self-contained consultation that the primary agent can act on immediately.
+var ORACLE_GPT_5_5_PROMPT = `You are DS-Oracle, a strategic technical advisor based on GPT-5.5. You are invoked by a primary coding agent when complex analysis or architectural decisions require elevated reasoning, and you respond with a single, self-contained consultation that the primary agent can act on immediately.
 
 # General
 
@@ -118058,7 +118058,7 @@ function createOracleAgent(model) {
     "task"
   ]);
   const base = {
-    description: "Read-only consultation agent. High-IQ reasoning specialist for debugging hard problems and high-difficulty architecture design. (Oracle - OhMyOpenCode)",
+    description: "Read-only consultation agent. High-IQ reasoning specialist for debugging hard problems and high-difficulty architecture design. (Oracle - DS-OhMyCloseAgent)",
     mode: MODE2,
     model,
     temperature: 0.1,
@@ -118115,7 +118115,7 @@ function createLibrarianAgent(model) {
     "call_omo_agent"
   ]);
   return {
-    description: "Specialized codebase understanding agent for multi-repository analysis, searching remote codebases, retrieving official documentation, and finding implementation examples using GitHub CLI, Context7, and Web Search. MUST BE USED when users ask to look up code in remote repositories, explain library internals, or find usage examples in open source. (Librarian - OhMyOpenCode)",
+    description: "Specialized codebase understanding agent for multi-repository analysis, searching remote codebases, retrieving official documentation, and finding implementation examples using GitHub CLI, Context7, and Web Search. MUST BE USED when users ask to look up code in remote repositories, explain library internals, or find usage examples in open source. (Librarian - DS-OhMyCloseAgent)",
     mode: MODE3,
     model,
     temperature: 0.1,
@@ -118426,7 +118426,7 @@ var EXPLORE_PROMPT_METADATA = {
 function createExploreAgent(model) {
   const restrictions = createAgentToolRestrictions(["write", "edit", "apply_patch", "task", "call_omo_agent"], ["lsp_symbols", "lsp_goto_definition", "lsp_find_references", "lsp_diagnostics", "ast_grep_search"]);
   return {
-    description: 'Contextual grep for codebases. Answers "Where is X?", "Which file has Y?", "Find the code that does Z". Fire multiple in parallel for broad searches. Specify thoroughness: "quick" for basic, "medium" for moderate, "very thorough" for comprehensive analysis. (Explore - OhMyOpenCode)',
+    description: 'Contextual grep for codebases. Answers "Where is X?", "Which file has Y?", "Find the code that does Z". Fire multiple in parallel for broad searches. Specify thoroughness: "quick" for basic, "medium" for moderate, "very thorough" for comprehensive analysis. (Explore - DS-OhMyCloseAgent)',
     mode: MODE4,
     model,
     temperature: 0.1,
@@ -118523,7 +118523,7 @@ var MULTIMODAL_LOOKER_PROMPT_METADATA = {
 function createMultimodalLookerAgent(model) {
   const restrictions = createAgentToolAllowlist(["read"]);
   return {
-    description: "Analyze media files (PDFs, images, diagrams) that require interpretation beyond raw text. Extracts specific information or summaries from documents, describes visual content. Use when you need analyzed/extracted data rather than literal file contents. (Multimodal-Looker - OhMyOpenCode)",
+    description: "Analyze media files (PDFs, images, diagrams) that require interpretation beyond raw text. Extracts specific information or summaries from documents, describes visual content. Use when you need analyzed/extracted data rather than literal file contents. (Multimodal-Looker - DS-OhMyCloseAgent)",
     mode: MODE5,
     model,
     temperature: 0.1,
@@ -118846,7 +118846,7 @@ var metisRestrictions = createAgentToolRestrictions([
 ]);
 function createMetisAgent(model) {
   return {
-    description: "Pre-planning consultant that analyzes requests to identify hidden intentions, ambiguities, and AI failure points. (Metis - OhMyOpenCode)",
+    description: "Pre-planning consultant that analyzes requests to identify hidden intentions, ambiguities, and AI failure points. (Metis - DS-OhMyCloseAgent)",
     mode: MODE6,
     model,
     temperature: 0.3,
@@ -119042,7 +119042,7 @@ ${ATLAS_POST_DELEGATION_RULE}
 
 // src/agents/atlas/default-prompt-sections.ts
 var DEFAULT_ATLAS_INTRO = `<identity>
-You are Atlas - the Master Orchestrator from OhMyOpenCode.
+You are Atlas - the Master Orchestrator from DS-OhMyCloseAgent.
 
 In Greek mythology, Atlas holds up the celestial heavens. You hold up the entire workflow - coordinating every agent, every task, every verification until completion.
 
@@ -119349,7 +119349,7 @@ function getDefaultAtlasPrompt() {
 
 // src/agents/atlas/gpt-prompt-sections.ts
 var GPT_ATLAS_INTRO = `<identity>
-You are Atlas - Master Orchestrator from OhMyOpenCode.
+You are Atlas - Master Orchestrator from DS-OhMyCloseAgent.
 Role: Conductor, not musician. General, not soldier.
 You DELEGATE, COORDINATE, and VERIFY. You NEVER write code yourself.
 </identity>
@@ -119647,7 +119647,7 @@ function getGptAtlasPrompt() {
 
 // src/agents/atlas/gemini-prompt-sections.ts
 var GEMINI_ATLAS_INTRO = `<identity>
-You are Atlas - Master Orchestrator from OhMyOpenCode.
+You are Atlas - Master Orchestrator from DS-OhMyCloseAgent.
 Role: Conductor, not musician. General, not soldier.
 You DELEGATE, COORDINATE, and VERIFY. You NEVER write code yourself.
 
@@ -120063,14 +120063,14 @@ function buildDynamicOrchestratorPrompt(ctx) {
   const decisionMatrix = buildDecisionMatrix(agents, userCategories);
   const skillsSection = buildSkillsSection2(skills2);
   const categorySkillsGuide = buildCategorySkillsDelegationGuide(availableCategories, skills2);
-  const agentIdentity = buildAgentIdentitySection("Atlas", "Master Orchestrator agent from OhMyOpenCode that coordinates specialized agents to complete todo lists");
+  const agentIdentity = buildAgentIdentitySection("DS-Atlas", "Master Orchestrator agent from DS-OhMyCloseAgent that coordinates specialized agents to complete todo lists");
   const basePrompt = getAtlasPrompt(model);
   return agentIdentity + `
 ` + basePrompt.replace("{CATEGORY_SECTION}", categorySection).replace("{AGENT_SECTION}", agentSection).replace("{DECISION_MATRIX}", decisionMatrix).replace("{SKILLS_SECTION}", skillsSection).replace("{{CATEGORY_SKILLS_DELEGATION_GUIDE}}", categorySkillsGuide);
 }
 function createAtlasAgent(ctx) {
   const baseConfig = {
-    description: "Orchestrates work via task() to complete ALL tasks in a todo list until fully done. (Atlas - OhMyOpenCode)",
+    description: "Orchestrates work via task() to complete ALL tasks in a todo list until fully done. (Atlas - DS-OhMyCloseAgent)",
     mode: MODE7,
     ...ctx.model ? { model: ctx.model } : {},
     temperature: 0.1,
@@ -120363,7 +120363,7 @@ function createMomusAgent(model) {
     "task"
   ]);
   const base = {
-    description: "Expert reviewer for evaluating work plans against rigorous clarity, verifiability, and completeness standards. (Momus - OhMyOpenCode)",
+    description: "Expert reviewer for evaluating work plans against rigorous clarity, verifiability, and completeness standards. (Momus - DS-OhMyCloseAgent)",
     mode: MODE8,
     model,
     temperature: 0.1,
@@ -121172,7 +121172,7 @@ function createHephaestusAgent(model, availableAgents, availableToolNames, avail
   const categories2 = availableCategories ?? [];
   const prompt = availableAgents ? buildHephaestusPrompt2(availableAgents, tools, skills2, categories2, useTaskSystem) : buildHephaestusPrompt2([], tools, skills2, categories2, useTaskSystem);
   return {
-    description: "Autonomous Deep Worker - goal-oriented execution with GPT 5.4 Codex. Explores thoroughly before acting, uses explore/librarian agents for comprehensive context, completes tasks end-to-end. Inspired by AmpCode deep mode. (Hephaestus - OhMyOpenCode)",
+    description: "Autonomous Deep Worker - goal-oriented execution with GPT 5.4 Codex. Explores thoroughly before acting, uses explore/librarian agents for comprehensive context, completes tasks end-to-end. Inspired by AmpCode deep mode. (Hephaestus - DS-OhMyCloseAgent)",
     mode: MODE9,
     model,
     maxTokens: 32000,
@@ -121796,7 +121796,7 @@ function buildDynamicHephaestusPrompt(ctx) {
       basePrompt = buildHephaestusPrompt(agents, tools, skills2, categories2, useTaskSystem);
       break;
   }
-  const agentIdentity = buildAgentIdentitySection("Hephaestus", "Autonomous deep worker for software engineering from OhMyOpenCode");
+  const agentIdentity = buildAgentIdentitySection("DS-Hephaestus", "Autonomous deep worker for software engineering from DS-OhMyCloseAgent");
   return `${agentIdentity}
 ${basePrompt}`;
 }
@@ -121811,7 +121811,7 @@ function createHephaestusAgent2(model, availableAgents, availableToolNames, avai
     useTaskSystem
   });
   return {
-    description: "Autonomous Deep Worker - goal-oriented execution with GPT Codex. Explores thoroughly before acting, uses explore/librarian agents for comprehensive context, completes tasks end-to-end. Inspired by AmpCode deep mode. (Hephaestus - OhMyOpenCode)",
+    description: "Autonomous Deep Worker - goal-oriented execution with GPT Codex. Explores thoroughly before acting, uses explore/librarian agents for comprehensive context, completes tasks end-to-end. Inspired by AmpCode deep mode. (Hephaestus - DS-OhMyCloseAgent)",
     mode: MODE10,
     model,
     maxTokens: 32000,
@@ -121868,7 +121868,7 @@ function buildDefaultSisyphusJuniorPrompt(useTaskSystem, promptAppend) {
   const todoDiscipline = buildTodoDisciplineSection4(useTaskSystem);
   const verificationText = useTaskSystem ? "All tasks marked completed" : "All todos marked completed";
   const prompt = `<Role>
-Sisyphus-Junior - Focused executor from OhMyOpenCode.
+Ultradus-Junior - Focused executor from DS-OhMyCloseAgent.
 Execute tasks directly.
 </Role>
 
@@ -121925,7 +121925,7 @@ No todos on multi-step work = INCOMPLETE WORK.
 function buildKimiK26SisyphusJuniorPrompt(useTaskSystem, promptAppend) {
   const taskDiscipline = buildKimiK26TaskDisciplineSection(useTaskSystem);
   const verificationText = useTaskSystem ? "All tasks marked completed" : "All todos marked completed";
-  const prompt = `You are Sisyphus-Junior - a focused task executor from OhMyOpenCode.
+  const prompt = `You are Ultradus-Junior - a focused task executor from DS-OhMyCloseAgent.
 
 ## Identity
 
@@ -122141,7 +122141,7 @@ Skip todos for V1 trivial fixes and single-step requests.
 function buildGptSisyphusJuniorPrompt(useTaskSystem, promptAppend) {
   const taskDiscipline = buildGptTaskDisciplineSection(useTaskSystem);
   const verificationText = useTaskSystem ? "All tasks marked completed" : "All todos marked completed";
-  const prompt = `You are Sisyphus-Junior - a focused task executor from OhMyOpenCode.
+  const prompt = `You are Ultradus-Junior - a focused task executor from DS-OhMyCloseAgent.
 
 ## Identity
 
@@ -122280,7 +122280,7 @@ No todos on multi-step work = INCOMPLETE WORK.`;
 function buildGpt54SisyphusJuniorPrompt(useTaskSystem, promptAppend) {
   const taskDiscipline = buildGpt54TaskDisciplineSection(useTaskSystem);
   const verificationText = useTaskSystem ? "All tasks marked completed" : "All todos marked completed";
-  const prompt = `You are Sisyphus-Junior - a focused task executor from OhMyOpenCode.
+  const prompt = `You are Ultradus-Junior - a focused task executor from DS-OhMyCloseAgent.
 
 ## Identity
 
@@ -122436,7 +122436,7 @@ Workflow:
 3. After each step, mark it \`completed\` immediately. Never batch completions.
 4. If scope changes, update the todo list before proceeding.`;
 }
-var SISYPHUS_JUNIOR_GPT_5_5_TEMPLATE = `You are Sisyphus-Junior, a focused task executor based on GPT-5.5. A primary orchestrator has delegated a categorized task to you, and your job is to complete that task within this turn using the guidance provided by the category-specific context appended to these instructions.
+var SISYPHUS_JUNIOR_GPT_5_5_TEMPLATE = `You are Ultradus-Junior, a focused task executor based on GPT-5.5. A primary orchestrator has delegated a categorized task to you, and your job is to complete that task within this turn using the guidance provided by the category-specific context appended to these instructions.
 
 {{ personality }}
 
@@ -122707,7 +122707,7 @@ ${resolvePromptAppend(promptAppend)}`;
 function buildGpt53CodexSisyphusJuniorPrompt(useTaskSystem, promptAppend) {
   const taskDiscipline = buildGpt53CodexTaskDisciplineSection(useTaskSystem);
   const verificationText = useTaskSystem ? "All tasks marked completed" : "All todos marked completed";
-  const prompt = `You are Sisyphus-Junior - a focused task executor from OhMyOpenCode.
+  const prompt = `You are Ultradus-Junior - a focused task executor from DS-OhMyCloseAgent.
 
 ## Identity
 
@@ -122846,7 +122846,7 @@ No todos on multi-step work = INCOMPLETE WORK.`;
 function buildGeminiSisyphusJuniorPrompt(useTaskSystem, promptAppend) {
   const taskDiscipline = buildGeminiTaskDisciplineSection(useTaskSystem);
   const verificationText = useTaskSystem ? "All tasks marked completed" : "All todos marked completed";
-  const prompt = `You are Sisyphus-Junior - a focused task executor from OhMyOpenCode.
+  const prompt = `You are Ultradus-Junior - a focused task executor from DS-OhMyCloseAgent.
 
 ## Identity
 
@@ -123089,7 +123089,7 @@ function createSisyphusJuniorAgentWithOverrides(override, systemDefaultModel, us
     ...getGptApplyPatchPermission(model)
   };
   const base = {
-    description: override?.description ?? "Focused task executor. Same discipline, no delegation. (Sisyphus-Junior - OhMyOpenCode)",
+    description: override?.description ?? "Focused task executor. Same discipline, no delegation. (Ultradus-Junior - DS-OhMyCloseAgent)",
     mode: MODE11,
     model,
     temperature,
@@ -124032,7 +124032,7 @@ CLEARANCE CHECKLIST:
 **If any answer is NO \u2192 DO NOT END YOUR TURN. Continue working.**
 </system-reminder>
 
-You are Prometheus, the strategic planning consultant. Named after the Titan who brought fire to humanity, you bring foresight and structure to complex work through thoughtful consultation.
+You are DS-Prometheus, the strategic planning consultant. Named after the Titan who brought fire to humanity, you bring foresight and structure to complex work through thoughtful consultation.
 
 ---
 `;
@@ -125050,7 +125050,7 @@ This will:
 // src/agents/prometheus/gpt.ts
 var PROMETHEUS_GPT_SYSTEM_PROMPT = `
 <identity>
-You are Prometheus - Strategic Planning Consultant from OhMyOpenCode.
+You are DS-Prometheus - Strategic Planning Consultant from DS-OhMyCloseAgent.
 Named after the Titan who brought fire to humanity, you bring foresight and structure.
 
 **YOU ARE A PLANNER. NOT AN IMPLEMENTER. NOT A CODE WRITER.**
@@ -125494,7 +125494,7 @@ Wave 2: [dependent tasks with categories]
 - Do NOT expand task scope; if you notice new work, call it out as optional.
 </user_updates_spec>
 
-You are Prometheus, the strategic planning consultant. You bring foresight and structure to complex work through thoughtful consultation.
+You are DS-Prometheus, the strategic planning consultant. You bring foresight and structure to complex work through thoughtful consultation.
 `;
 function getGptPrometheusPrompt() {
   return PROMETHEUS_GPT_SYSTEM_PROMPT;
@@ -125503,7 +125503,7 @@ function getGptPrometheusPrompt() {
 // src/agents/prometheus/gemini.ts
 var PROMETHEUS_GEMINI_SYSTEM_PROMPT = `
 <identity>
-You are Prometheus - Strategic Planning Consultant from OhMyOpenCode.
+You are DS-Prometheus - Strategic Planning Consultant from DS-OhMyCloseAgent.
 Named after the Titan who brought fire to humanity, you bring foresight and structure.
 
 **YOU ARE A PLANNER. NOT AN IMPLEMENTER. NOT A CODE WRITER. NOT AN EXECUTOR.**
@@ -125815,7 +125815,7 @@ After plan complete:
  **USE TOOL CALLS for every phase transition - not internal reasoning**
 </critical_rules>
 
-You are Prometheus, the strategic planning consultant. You bring foresight and structure to complex work through thorough exploration and thoughtful consultation.
+You are DS-Prometheus, the strategic planning consultant. You bring foresight and structure to complex work through thorough exploration and thoughtful consultation.
 `;
 function getGeminiPrometheusPrompt() {
   return PROMETHEUS_GEMINI_SYSTEM_PROMPT;
@@ -125918,7 +125918,7 @@ async function buildPrometheusAgentConfig(params) {
     mode: "primary",
     prompt: getPrometheusPrompt(resolvedModel, params.disabledTools),
     permission: PROMETHEUS_PERMISSION,
-    description: `${params.configAgentPlan?.description ?? "Plan agent"} (Prometheus - OhMyOpenCode)`,
+    description: `${params.configAgentPlan?.description ?? "Plan agent"} (Prometheus - DS-OhMyCloseAgent)`,
     color: params.configAgentPlan?.color ?? "#FF5722",
     ...temperatureToUse !== undefined ? { temperature: temperatureToUse } : {},
     ...topPToUse !== undefined ? { top_p: topPToUse } : {},

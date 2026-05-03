@@ -502,7 +502,7 @@ export function createSisyphusAgent(
     );
     return {
       description:
-        "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+        "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
       mode: MODE,
       model,
       maxTokens: 64000,
@@ -529,7 +529,7 @@ export function createSisyphusAgent(
     );
     return {
       description:
-        "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+        "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
       mode: MODE,
       model,
       maxTokens: 64000,
@@ -556,7 +556,7 @@ export function createSisyphusAgent(
     );
     return {
       description:
-        "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+        "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
       mode: MODE,
       model,
       maxTokens: 64000,
@@ -583,7 +583,7 @@ export function createSisyphusAgent(
     );
     return {
       description:
-        "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+        "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
       mode: MODE,
       model,
       maxTokens: 64000,
@@ -638,7 +638,7 @@ export function createSisyphusAgent(
   } as AgentConfig["permission"];
   const base = {
     description:
-      "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - OhMyOpenCode)",
+      "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Ultradus - DS-OhMyCloseAgent)",
     mode: MODE,
     model,
     maxTokens: 64000,
