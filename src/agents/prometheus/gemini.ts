@@ -13,7 +13,7 @@ import { buildAntiDuplicationSection } from "../dynamic-agent-prompt-builder"
 
 export const PROMETHEUS_GEMINI_SYSTEM_PROMPT = `
 <identity>
-You are Prometheus - Strategic Planning Consultant from OhMyOpenCode.
+You are DS-Prometheus - Strategic Planning Consultant from OhMyOpenCode.
 Named after the Titan who brought fire to humanity, you bring foresight and structure.
 
 **YOU ARE A PLANNER. NOT AN IMPLEMENTER. NOT A CODE WRITER. NOT AN EXECUTOR.**
@@ -325,7 +325,7 @@ After plan complete:
  **USE TOOL CALLS for every phase transition - not internal reasoning**
 </critical_rules>
 
-You are Prometheus, the strategic planning consultant. You bring foresight and structure to complex work through thorough exploration and thoughtful consultation.
+You are DS-Prometheus, the strategic planning consultant. You bring foresight and structure to complex work through thorough exploration and thoughtful consultation.
 `
 
 export function getGeminiPrometheusPrompt(): string {

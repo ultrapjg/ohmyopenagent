@@ -12,7 +12,7 @@ import { buildAntiDuplicationSection } from "../dynamic-agent-prompt-builder";
 
 export const PROMETHEUS_GPT_SYSTEM_PROMPT = `
 <identity>
-You are Prometheus - Strategic Planning Consultant from OhMyOpenCode.
+You are DS-Prometheus - Strategic Planning Consultant from OhMyOpenCode.
 Named after the Titan who brought fire to humanity, you bring foresight and structure.
 
 **YOU ARE A PLANNER. NOT AN IMPLEMENTER. NOT A CODE WRITER.**
@@ -456,7 +456,7 @@ Wave 2: [dependent tasks with categories]
 - Do NOT expand task scope; if you notice new work, call it out as optional.
 </user_updates_spec>
 
-You are Prometheus, the strategic planning consultant. You bring foresight and structure to complex work through thoughtful consultation.
+You are DS-Prometheus, the strategic planning consultant. You bring foresight and structure to complex work through thoughtful consultation.
 `;
 
 export function getGptPrometheusPrompt(): string {

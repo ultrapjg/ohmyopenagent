@@ -103,7 +103,7 @@ function buildDynamicHephaestusPrompt(ctx?: HephaestusContext): string {
   }
 
   const agentIdentity = buildAgentIdentitySection(
-    "Hephaestus",
+    "DS-Hephaestus",
     "Autonomous deep worker for software engineering from OhMyOpenCode",
   );
 
