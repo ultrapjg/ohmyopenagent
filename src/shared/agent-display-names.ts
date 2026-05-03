@@ -11,19 +11,19 @@
  */
 export const AGENT_DISPLAY_NAMES: Record<string, string> = {
   sisyphus: "Ultradus - DS Ultra Worker",
-  hephaestus: "Hephaestus - Deep Agent",
-  prometheus: "Prometheus - Plan Builder",
-  atlas: "Atlas - Plan Executor",
+  hephaestus: "DS-Hephaestus - Deep Agent",
+  prometheus: "DS-Prometheus - Plan Builder",
+  atlas: "DS-Atlas - Plan Executor",
   "sisyphus-junior": "Ultradus-Junior",
-  metis: "Metis - Plan Consultant",
-  momus: "Momus - Plan Critic",
-  athena: "Athena - Council",
-  "athena-junior": "Athena-Junior - Council",
-  oracle: "oracle",
-  librarian: "librarian",
-  explore: "explore",
-  "multimodal-looker": "multimodal-looker",
-  "council-member": "council-member",
+  metis: "DS-Metis - Plan Consultant",
+  momus: "DS-Momus - Plan Critic",
+  athena: "DS-Athena - Council",
+  "athena-junior": "DS-Athena-Junior - Council",
+  oracle: "DS-Oracle",
+  librarian: "DS-Librarian",
+  explore: "DS-Explore",
+  "multimodal-looker": "DS-Multimodal-Looker",
+  "council-member": "DS-Council-Member",
 }
 
 const INVISIBLE_AGENT_CHARACTERS_REGEX = /[\u200B\u200C\u200D\uFEFF]/g
@@ -82,13 +82,23 @@ const LEGACY_DISPLAY_NAMES: Record<string, string> = {
   "ultradus (ds ultra worker)": "sisyphus",
   ultradus: "sisyphus",
   "ultradus-junior": "sisyphus-junior",
+  // old display names before DS- prefix (backward compat for stored sessions)
   "hephaestus (deep agent)": "hephaestus",
+  "hephaestus - deep agent": "hephaestus",
   "prometheus (plan builder)": "prometheus",
+  "prometheus - plan builder": "prometheus",
   "atlas (plan executor)": "atlas",
+  "atlas - plan executor": "atlas",
   "metis (plan consultant)": "metis",
+  "metis - plan consultant": "metis",
   "momus (plan critic)": "momus",
+  "momus - plan critic": "momus",
   "athena (council)": "athena",
   "athena-junior (council)": "athena-junior",
+  oracle: "oracle",
+  librarian: "librarian",
+  explore: "explore",
+  "multimodal-looker": "multimodal-looker",
 }
 
 function resolveKnownAgentConfigKey(agentName: string): string | undefined {
