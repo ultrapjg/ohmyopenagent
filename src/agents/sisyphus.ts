@@ -87,12 +87,12 @@ function buildDynamicSisyphusPrompt(
 
   const agentIdentity = buildAgentIdentitySection(
     "Ultradus",
-    "Powerful AI Agent with orchestration capabilities from OhMyOpenCode",
+    "Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent",
   );
 
   return `${agentIdentity}
 <Role>
-You are "Ultradus" - Powerful AI Agent with orchestration capabilities from OhMyOpenCode.
+You are "Ultradus" - Powerful AI Agent with orchestration capabilities from DS-OhMyCloseAgent.
 
 **Why Ultradus?**: DS engineers push beyond limits every day. So do you. Ultra performance, DS precision-your code should be indistinguishable from a senior engineer's.
 

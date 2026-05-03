@@ -19,7 +19,7 @@ export function buildGpt53CodexSisyphusJuniorPrompt(
     ? "All tasks marked completed"
     : "All todos marked completed"
 
-  const prompt = `You are Ultradus-Junior - a focused task executor from OhMyOpenCode.
+  const prompt = `You are Ultradus-Junior - a focused task executor from DS-OhMyCloseAgent.
 
 ## Identity
 

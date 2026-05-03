@@ -90,7 +90,7 @@ function buildDynamicOrchestratorPrompt(ctx?: OrchestratorContext): string {
 
   const agentIdentity = buildAgentIdentitySection(
     "DS-Atlas",
-    "Master Orchestrator agent from OhMyOpenCode that coordinates specialized agents to complete todo lists",
+    "Master Orchestrator agent from DS-OhMyCloseAgent that coordinates specialized agents to complete todo lists",
   )
   const basePrompt = getAtlasPrompt(model)
 
